@@ -1,0 +1,54 @@
+{
+  "name": "common_schema",
+  "description": "Common schema for test data generation",
+  "fields": [
+    {
+      "name": "id",
+      "dataType": "STRING",
+      "nullable": false,
+      "description": "Unique identifier"
+    },
+    {
+      "name": "name",
+      "dataType": "STRING",
+      "nullable": false,
+      "description": "Full name"
+    },
+    {
+      "name": "email",
+      "dataType": "STRING",
+      "nullable": true,
+      "description": "Email address"
+    },
+    {
+      "name": "age",
+      "dataType": "INTEGER",
+      "nullable": true,
+      "description": "Age in years"
+    },
+    {
+      "name": "salary",
+      "dataType": "DOUBLE",
+      "nullable": true,
+      "description": "Annual salary"
+    },
+    {
+      "name": "is_active",
+      "dataType": "BOOLEAN",
+      "nullable": true,
+      "description": "Active status"
+    },
+    {
+      "name": "created_date",
+      "dataType": "DATE",
+      "nullable": false,
+      "description": "Creation date"
+    },
+    {
+      "name": "last_updated",
+      "dataType": "TIMESTAMP",
+      "nullable": false,
+      "description": "Last update timestamp"
+    }
+  ]
+}

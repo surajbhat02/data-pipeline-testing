@@ -1,0 +1,76 @@
+{
+  "simple_pipeline_test": {
+    "description": "Simple pipeline with source and target",
+    "pipeline_name": "Simple_Test_Pipeline",
+    "input_data": "simple_test_data.csv",
+    "expected_output": "simple_output.csv",
+    "validation_rules": {
+      "record_count": 100,
+      "required_fields": ["id", "name", "email"]
+    }
+  },
+  "transformation_pipeline_test": {
+    "description": "Pipeline with data transformations",
+    "pipeline_name": "Transformation_Pipeline",
+    "input_data": "transformation_input.csv",
+    "expected_output": "transformation_output.csv",
+    "transformations": [
+      {
+        "type": "filter",
+        "condition": "age > 18"
+      },
+      {
+        "type": "join",
+        "lookup_data": "lookup_data.csv",
+        "join_key": "id"
+      }
+    ]
+  },
+  "validation_pipeline_test": {
+    "description": "Pipeline with data validation",
+    "pipeline_name": "Validation_Pipeline",
+    "input_data": "validation_input.csv",
+    "validation_rules": {
+      "completeness": {
+        "id": 100,
+        "name": 100,
+        "email": 80
+      },
+      "uniqueness": {
+        "id": 100
+      },
+      "format": {
+        "email": "email_format",
+        "phone": "phone_format"
+      }
+    }
+  },
+  "performance_test": {
+    "description": "Performance test with large dataset",
+    "pipeline_name": "Performance_Test_Pipeline",
+    "input_data": "large_dataset.csv",
+    "performance_thresholds": {
+      "max_execution_time": 300,
+      "max_memory_usage": 2048,
+      "min_throughput": 1000
+    }
+  },
+  "error_handling_test": {
+    "description": "Test error handling scenarios",
+    "pipeline_name": "Error_Handling_Pipeline",
+    "test_scenarios": [
+      {
+        "scenario": "missing_input_file",
+        "expected_error": "Input data source not found"
+      },
+      {
+        "scenario": "schema_mismatch",
+        "expected_error": "Schema validation failed"
+      },
+      {
+        "scenario": "invalid_data_format",
+        "expected_error": "Data format validation failed"
+      }
+    ]
+  }
+}

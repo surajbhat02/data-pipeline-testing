@@ -1,0 +1,55 @@
+{
+  "pipeline": {
+    "name": "Simple_Customer_Pipeline",
+    "description": "A simple pipeline to process customer data",
+    "version": "1.0.0",
+    "stages": [
+      {
+        "id": "source_stage",
+        "name": "Customer Data Source",
+        "type": "SOURCE",
+        "configuration": {
+          "source_type": "CSV",
+          "file_path": "src/test/resources/testdata/mockdata/sample_customers.csv",
+          "schema": {
+            "fields": [
+              {"name": "id", "type": "STRING"},
+              {"name": "name", "type": "STRING"},
+              {"name": "email", "type": "STRING"},
+              {"name": "age", "type": "INTEGER"},
+              {"name": "salary", "type": "DOUBLE"},
+              {"name": "is_active", "type": "BOOLEAN"},
+              {"name": "created_date", "type": "DATE"},
+              {"name": "last_updated", "type": "TIMESTAMP"}
+            ]
+          }
+        }
+      },
+      {
+        "id": "filter_stage",
+        "name": "Active Customers Filter",
+        "type": "TRANSFORMATION",
+        "configuration": {
+          "transformation_type": "FILTER",
+          "condition": "is_active = true"
+        },
+        "dependencies": ["source_stage"]
+      },
+      {
+        "id": "target_stage",
+        "name": "Processed Customer Data Target",
+        "type": "TARGET",
+        "configuration": {
+          "target_type": "CSV",
+          "file_path": "target/output/processed_customers.csv"
+        },
+        "dependencies": ["filter_stage"]
+      }
+    ],
+    "metadata": {
+      "created_by": "test_user",
+      "created_date": "2023-12-01",
+      "tags": ["customer", "simple", "test"]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+id,name,email,age,salary,is_active,created_date,last_updated
+1,John Doe,john.doe@example.com,30,75000.00,true,2023-01-15,2023-12-01 10:30:00
+2,Jane Smith,jane.smith@example.com,28,68000.00,true,2023-02-20,2023-12-01 11:15:00
+3,Bob Johnson,bob.johnson@example.com,35,82000.00,false,2023-03-10,2023-12-01 09:45:00
+4,Alice Brown,alice.brown@example.com,32,71000.00,true,2023-04-05,2023-12-01 14:20:00
+5,Charlie Wilson,charlie.wilson@example.com,29,69500.00,true,2023-05-12,2023-12-01 16:10:00
+6,Diana Davis,diana.davis@example.com,31,73500.00,false,2023-06-18,2023-12-01 08:30:00
+7,Edward Miller,edward.miller@example.com,33,78000.00,true,2023-07-22,2023-12-01 12:45:00
+8,Fiona Garcia,fiona.garcia@example.com,27,66000.00,true,2023-08-14,2023-12-01 15:20:00
+9,George Martinez,george.martinez@example.com,36,85000.00,false,2023-09-08,2023-12-01 13:55:00
+10,Helen Rodriguez,helen.rodriguez@example.com,30,72000.00,true,2023-10-25,2023-12-01 17:30:00
