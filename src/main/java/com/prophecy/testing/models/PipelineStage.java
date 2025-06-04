@@ -51,6 +51,23 @@ public class PipelineStage {
         this.status = StageStatus.PENDING;
     }
     
+    public PipelineStage(String id, String name, Map<String, Object> configuration) {
+        this.id = id;
+        this.name = name;
+        this.configuration = configuration;
+        this.status = StageStatus.PENDING;
+        // Set type from configuration or default
+        if (configuration != null && configuration.containsKey("type")) {
+            try {
+                this.type = StageType.valueOf(configuration.get("type").toString().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                this.type = StageType.TRANSFORMATION; // default
+            }
+        } else {
+            this.type = StageType.TRANSFORMATION; // default
+        }
+    }
+    
     // Getters and Setters
     public String getId() {
         return id;

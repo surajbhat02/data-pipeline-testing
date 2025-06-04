@@ -82,6 +82,18 @@ public class ConfigManager {
         return getProperty("prophecy.login.url");
     }
     
+    public String getProphecyUsername() {
+        return getProperty("prophecy.username");
+    }
+    
+    public String getProphecyPassword() {
+        return getProperty("prophecy.password");
+    }
+    
+    public String getProphecyApiToken() {
+        return getProperty("prophecy.api.token");
+    }
+    
     public int getImplicitTimeout() {
         return getIntProperty("prophecy.timeout.implicit", 10);
     }

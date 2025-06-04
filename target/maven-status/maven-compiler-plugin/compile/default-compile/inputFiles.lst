@@ -25,3 +25,4 @@
 /workspace/data-pipeline-testing/src/main/java/com/prophecy/testing/models/PipelineStage.java
 /workspace/data-pipeline-testing/src/main/java/com/prophecy/testing/utils/ApiTestUtils.java
 /workspace/data-pipeline-testing/src/main/java/com/prophecy/testing/pages/BasePage.java
+/workspace/data-pipeline-testing/src/main/java/com/prophecy/testing/api/ProphecyApiClient.java

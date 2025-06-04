@@ -5,6 +5,8 @@ com/prophecy/testing/pages/PipelinesPage.class
 com/prophecy/testing/utils/PerformanceTestUtils$PerformanceMetrics.class
 com/prophecy/testing/data/TestDataManager.class
 com/prophecy/testing/data/MockDataGenerator$1.class
+com/prophecy/testing/api/ProphecyApiClient$PipelineTestResult.class
+com/prophecy/testing/api/ProphecyApiClient$StageTestResult.class
 com/prophecy/testing/utils/PerformanceTestUtils$LoadTestResults.class
 com/prophecy/testing/pages/BasePage.class
 com/prophecy/testing/models/DataSchema.class
@@ -13,6 +15,7 @@ com/prophecy/testing/models/DataType.class
 com/prophecy/testing/models/Pipeline.class
 com/prophecy/testing/utils/WaitUtils.class
 com/prophecy/testing/utils/ApiTestUtils.class
+com/prophecy/testing/api/ProphecyApiClient$StageExecutionResult.class
 com/prophecy/testing/pages/PipelineEditorPage.class
 com/prophecy/testing/models/StageType.class
 com/prophecy/testing/reporting/ExtentReportManager.class
@@ -25,6 +28,7 @@ com/prophecy/testing/models/PipelineStatus.class
 com/prophecy/testing/pages/LoginPage.class
 com/prophecy/testing/models/DataSource.class
 com/prophecy/testing/utils/PerformanceTestUtils.class
+com/prophecy/testing/api/ProphecyApiClient.class
 com/prophecy/testing/models/PipelineStage.class
 com/prophecy/testing/models/WriteMode.class
 com/prophecy/testing/config/WebDriverManager.class
