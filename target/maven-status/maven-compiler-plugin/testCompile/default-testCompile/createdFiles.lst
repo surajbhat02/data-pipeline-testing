@@ -1,11 +1,10 @@
 com/prophecy/testing/runners/StageByStageTestRunner.class
+com/prophecy/testing/runners/ProphecyEdgeCasesTestRunner.class
 com/prophecy/testing/runners/RegressionTestRunner.class
-com/prophecy/testing/stepdefinitions/CommonSteps.class
-com/prophecy/testing/stepdefinitions/PipelineExecutionSteps.class
-com/prophecy/testing/hooks/TestHooks.class
 com/prophecy/testing/runners/SmokeTestRunner.class
+com/prophecy/testing/hooks/TestHooks.class
 com/prophecy/testing/runners/TestRunner.class
-com/prophecy/testing/stepdefinitions/DataValidationSteps.class
+com/prophecy/testing/runners/PipelineTestRunner.class
 com/prophecy/testing/runners/ExampleTestRunner.class
-com/prophecy/testing/stepdefinitions/StageByStageTestSteps.class
-com/prophecy/testing/stepdefinitions/PipelineCreationSteps.class
+com/prophecy/testing/stepdefinitions/ProphecyWebTestSteps.class
+com/prophecy/testing/runners/ProphecyAdvancedTestRunner.class

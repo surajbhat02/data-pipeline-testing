@@ -1,11 +1,10 @@
 /workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/runners/TestRunner.java
-/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/stepdefinitions/StageByStageTestSteps.java
 /workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/runners/SmokeTestRunner.java
-/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/stepdefinitions/CommonSteps.java
-/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/stepdefinitions/PipelineExecutionSteps.java
-/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/hooks/TestHooks.java
+/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/stepdefinitions/ProphecyWebTestSteps.java
+/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/runners/PipelineTestRunner.java
 /workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/runners/ExampleTestRunner.java
 /workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/runners/StageByStageTestRunner.java
-/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/stepdefinitions/DataValidationSteps.java
-/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/stepdefinitions/PipelineCreationSteps.java
+/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/hooks/TestHooks.java
+/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/runners/ProphecyAdvancedTestRunner.java
 /workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/runners/RegressionTestRunner.java
+/workspace/data-pipeline-testing/src/test/java/com/prophecy/testing/runners/ProphecyEdgeCasesTestRunner.java

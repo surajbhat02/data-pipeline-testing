@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
  * Test runner for stage-by-stage pipeline testing
  */
 @CucumberOptions(
-        features = "src/test/resources/features/stage_by_stage_testing.feature",
+        features = "src/test/resources/features",
         glue = {"com.prophecy.testing.stepdefinitions", "com.prophecy.testing.hooks"},
         plugin = {
                 "pretty",
@@ -16,8 +16,8 @@ import io.cucumber.testng.CucumberOptions;
                 "junit:target/cucumber-reports/stage-by-stage.xml"
         },
         monochrome = true,
-        publish = true,
-        tags = "@stage-testing"
+        publish = false,
+        tags = "@WebTest and @StageByStage"
 )
 public class StageByStageTestRunner extends AbstractTestNGCucumberTests {
     // This runner executes stage-by-stage testing scenarios

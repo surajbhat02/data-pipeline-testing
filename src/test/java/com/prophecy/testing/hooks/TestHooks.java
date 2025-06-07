@@ -2,7 +2,7 @@ package com.prophecy.testing.hooks;
 
 import com.prophecy.testing.config.ConfigManager;
 import com.prophecy.testing.config.WebDriverManager;
-import com.prophecy.testing.data.TestDataManager;
+
 import com.prophecy.testing.utils.ScreenshotUtils;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 public class TestHooks {
     private static final Logger logger = LogManager.getLogger(TestHooks.class);
     private static ConfigManager config;
-    private static TestDataManager testDataManager;
+
     
     @BeforeAll
     public static void globalSetup() {
@@ -26,7 +26,7 @@ public class TestHooks {
         
         // Initialize configuration
         config = ConfigManager.getInstance();
-        testDataManager = new TestDataManager();
+        // Test data manager initialization removed for web-only testing
         
         // Clean up old screenshots
         ScreenshotUtils.cleanupOldScreenshots(7); // Keep screenshots for 7 days
@@ -34,12 +34,24 @@ public class TestHooks {
         logger.info("Global test setup completed");
     }
     
-    @Before
-    public void setUp(Scenario scenario) {
-        logger.info("=== Starting Test Scenario: {} ===", scenario.getName());
+    @Before("@WebTest")
+    public void setUpWebTest(Scenario scenario) {
+        logger.info("=== Starting Web Test Scenario: {} ===", scenario.getName());
         
-        // Initialize WebDriver
+        // Initialize WebDriver only for web testing scenarios
         WebDriverManager.initializeDriver();
+        
+        // Log scenario tags
+        if (!scenario.getSourceTagNames().isEmpty()) {
+            logger.info("Scenario tags: {}", scenario.getSourceTagNames());
+        }
+        
+        logger.info("Web test scenario setup completed for: {}", scenario.getName());
+    }
+    
+    @Before("not @WebTest and not @PipelineTest and not @StageByStage")
+    public void setUpGenericTest(Scenario scenario) {
+        logger.info("=== Starting Test Scenario: {} ===", scenario.getName());
         
         // Log scenario tags
         if (!scenario.getSourceTagNames().isEmpty()) {
@@ -49,14 +61,14 @@ public class TestHooks {
         logger.info("Test scenario setup completed for: {}", scenario.getName());
     }
     
-    @After
-    public void tearDown(Scenario scenario) {
-        logger.info("=== Finishing Test Scenario: {} ===", scenario.getName());
+    @After("@WebTest")
+    public void tearDownWebTest(Scenario scenario) {
+        logger.info("=== Finishing Web Test Scenario: {} ===", scenario.getName());
         
         try {
             // Take screenshot if scenario failed
             if (scenario.isFailed()) {
-                logger.error("Scenario failed: {}", scenario.getName());
+                logger.error("Web test scenario failed: {}", scenario.getName());
                 
                 String screenshotPath = ScreenshotUtils.takeFailureScreenshot(
                         scenario.getName().replaceAll(" ", "_"),
@@ -71,17 +83,38 @@ public class TestHooks {
                     }
                 }
             } else {
-                logger.info("Scenario passed: {}", scenario.getName());
+                logger.info("Web test scenario passed: {}", scenario.getName());
             }
             
             // Log scenario status
             logger.info("Scenario status: {}", scenario.getStatus());
             
         } catch (Exception e) {
-            logger.error("Error during scenario teardown: {}", e.getMessage());
+            logger.error("Error during web test scenario teardown: {}", e.getMessage());
         } finally {
-            // Always quit the driver
+            // Always quit the driver for web tests
             WebDriverManager.quitDriver();
+        }
+        
+        logger.info("Web test scenario teardown completed for: {}", scenario.getName());
+    }
+    
+    @After("not @WebTest and not @PipelineTest and not @StageByStage")
+    public void tearDownGenericTest(Scenario scenario) {
+        logger.info("=== Finishing Test Scenario: {} ===", scenario.getName());
+        
+        try {
+            // Log scenario status
+            if (scenario.isFailed()) {
+                logger.error("Scenario failed: {}", scenario.getName());
+            } else {
+                logger.info("Scenario passed: {}", scenario.getName());
+            }
+            
+            logger.info("Scenario status: {}", scenario.getStatus());
+            
+        } catch (Exception e) {
+            logger.error("Error during scenario teardown: {}", e.getMessage());
         }
         
         logger.info("Test scenario teardown completed for: {}", scenario.getName());
@@ -92,10 +125,7 @@ public class TestHooks {
         logger.info("=== Test Suite Execution Completed ===");
         
         try {
-            // Clean up test data
-            if (testDataManager != null) {
-                testDataManager.cleanupTestData();
-            }
+            // Test data cleanup removed for web-only testing
             
             // Final cleanup
             WebDriverManager.quitAllDrivers();
@@ -113,15 +143,8 @@ public class TestHooks {
     public void setUpTestData(Scenario scenario) {
         logger.info("Setting up test data for scenario: {}", scenario.getName());
         
-        try {
-            // Generate common test data
-            testDataManager.generateMockData("common_schema.json", "common_test_data.csv", 100);
-            
-            logger.info("Test data setup completed");
-        } catch (Exception e) {
-            logger.error("Error setting up test data: {}", e.getMessage());
-            throw new RuntimeException("Failed to setup test data", e);
-        }
+        // Test data generation removed for web-only testing
+        logger.info("Test data setup completed");
     }
     
     /**
