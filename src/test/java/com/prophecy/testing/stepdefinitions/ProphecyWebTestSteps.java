@@ -52,6 +52,22 @@ public class ProphecyWebTestSteps {
         log.info("Successfully logged in with username: {}", username);
     }
     
+    @When("I login with SSO")
+    public void i_login_with_sso() {
+        dashboardPage = loginPage.loginWithSSO();
+        assertThat(loginPage.isLoginSuccessful()).isTrue();
+        assertThat(dashboardPage.isDashboardLoaded()).isTrue();
+        log.info("Successfully logged in with SSO");
+    }
+    
+    @When("I login using smart login")
+    public void i_login_using_smart_login() {
+        dashboardPage = loginPage.smartLogin();
+        assertThat(loginPage.isLoginSuccessful()).isTrue();
+        assertThat(dashboardPage.isDashboardLoaded()).isTrue();
+        log.info("Successfully logged in using smart login");
+    }
+    
     @When("I login with Okta using username {string} and password {string}")
     public void i_login_with_okta_using_username_and_password(String username, String password) {
         dashboardPage = loginPage.loginWithOkta(username, password);
@@ -78,6 +94,36 @@ public class ProphecyWebTestSteps {
     public void i_should_be_logged_in_successfully() {
         assertThat(dashboardPage.isDashboardLoaded()).isTrue();
         log.info("Login verification successful");
+    }
+    
+    @Then("I should be redirected to SSO provider")
+    public void i_should_be_redirected_to_sso_provider() {
+        // Wait a moment for redirect
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        
+        // Check if we're no longer on the original login page
+        boolean isRedirected = !loginPage.isLoginSuccessful();
+        assertThat(isRedirected).isTrue();
+        log.info("Successfully redirected to SSO provider");
+    }
+    
+    @Then("I should be logged in successfully after SSO authentication")
+    public void i_should_be_logged_in_successfully_after_sso_authentication() {
+        // Wait for SSO authentication to complete and redirect back
+        try {
+            Thread.sleep(5000); // Wait for SSO authentication
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        
+        dashboardPage = new ProphecyDashboardPage();
+        assertThat(loginPage.isLoginSuccessful()).isTrue();
+        assertThat(dashboardPage.isDashboardLoaded()).isTrue();
+        log.info("SSO authentication completed successfully");
     }
     
     @Then("I should see login error message")

@@ -6,29 +6,29 @@ Feature: Prophecy Web Testing - Pipeline Execution with Custom Data
 
   Background:
     Given I navigate to Prophecy login page "https://app.prophecy.io"
-    When I login with username "test@example.com" and password "password123"
+    When I login with SSO
     Then I should be logged in successfully
 
-  @WebTest @Login
-  Scenario: Successful login to Prophecy with Smart Login
+  @WebTest @Login @SSO
+  Scenario: Successful login to Prophecy with SSO
     Given I navigate to Prophecy login page "https://app.prophecy.io"
-    When I login with username "valid@user.com" and password "validpassword"
+    When I login with SSO
     Then I should be logged in successfully
     And I should see the dashboard
 
-  @WebTest @Login @SSO @Okta
-  Scenario: Successful login to Prophecy with Okta SSO
+  @WebTest @Login @SmartLogin
+  Scenario: Successful login to Prophecy with Smart Login (Auto-detect SSO)
     Given I navigate to Prophecy login page "https://app.prophecy.io"
-    When I login with Okta using username "valid@user.com" and password "validpassword"
+    When I login using smart login
     Then I should be logged in successfully
     And I should see the dashboard
 
-  @WebTest @Login @SSO @ADFS
-  Scenario: Successful login to Prophecy with ADFS SSO
+  @WebTest @Login @SSO @Manual
+  Scenario: Manual SSO login process
     Given I navigate to Prophecy login page "https://app.prophecy.io"
-    When I login with ADFS using username "valid@user.com" and password "validpassword"
-    Then I should be logged in successfully
-    And I should see the dashboard
+    When I click SSO login button
+    Then I should be redirected to SSO provider
+    And I should be logged in successfully after SSO authentication
 
   @WebTest @Login @Negative
   Scenario: Failed login with invalid credentials

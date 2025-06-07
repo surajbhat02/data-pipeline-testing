@@ -145,22 +145,36 @@ mvn test -Dcucumber.filter.tags="@WebTest and @Performance"
 - 🚪 Logout functionality
 
 #### **SSO Authentication Support**
-The framework automatically detects and handles different authentication methods:
+The framework supports SSO-only authentication (no username/password required):
 
-1. **Smart Login** (`smartLogin()`) - Detects authentication type automatically
-2. **Okta SSO** (`loginWithOkta()`) - Direct Okta authentication
-3. **ADFS SSO** (`loginWithADFS()`) - Direct ADFS authentication
-4. **Traditional** (`login()`) - Email/password authentication
+1. **SSO Login** (`loginWithSSO()`) - Direct SSO authentication (recommended)
+2. **Smart Login** (`smartLogin()`) - Auto-detects SSO and performs authentication
+3. **Manual SSO** (`clickSSOLogin()`) - Click SSO button and handle authentication manually
+4. **Traditional** (`login()`) - Email/password authentication (fallback)
 
 **Example Gherkin Steps:**
 ```gherkin
-# Smart login (recommended)
-When I login with username "user@company.com" and password "password123"
+# SSO-only login (recommended for corporate environments)
+When I login with SSO
 
-# Specific SSO methods
-When I login with Okta using username "user@company.com" and password "password123"
-When I login with ADFS using username "user@company.com" and password "password123"
+# Smart login (auto-detects SSO)
+When I login using smart login
+
+# Manual SSO process
+When I click SSO login button
+Then I should be redirected to SSO provider
+And I should be logged in successfully after SSO authentication
+
+# Traditional login (fallback)
+When I login with username "user@company.com" and password "password123"
 ```
+
+**How SSO Works:**
+1. Framework detects SSO login button/link on Prophecy login page
+2. Clicks the SSO button to initiate authentication
+3. Waits for automatic redirect to company's SSO provider (Okta/ADFS)
+4. Waits for SSO authentication to complete and redirect back to Prophecy
+5. Verifies successful login to Prophecy dashboard
 
 ### 🔄 **Pipeline Execution**
 - 📊 Execute pipeline with custom JSON data
