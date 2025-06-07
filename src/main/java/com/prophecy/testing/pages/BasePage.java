@@ -77,6 +77,15 @@ public abstract class BasePage {
     }
     
     /**
+     * Click WebElement directly
+     */
+    protected void clickElement(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        logger.debug("Clicked element: {}", element);
+    }
+    
+    /**
      * Click element using JavaScript
      */
     protected void clickElementWithJS(By locator) {
@@ -94,6 +103,16 @@ public abstract class BasePage {
         element.clear();
         element.sendKeys(text);
         logger.debug("Entered text '{}' in element: {}", text, locator);
+    }
+    
+    /**
+     * Enter text in WebElement directly
+     */
+    protected void enterText(WebElement element, String text) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.clear();
+        element.sendKeys(text);
+        logger.debug("Entered text '{}' in element: {}", text, element);
     }
     
     /**
@@ -125,6 +144,29 @@ public abstract class BasePage {
             return element.isDisplayed();
         } catch (Exception e) {
             return false;
+        }
+    }
+    
+    /**
+     * Check if WebElement is present and displayed
+     */
+    protected boolean isElementPresent(WebElement element) {
+        try {
+            return element != null && element.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    /**
+     * Find element by locator with null safety
+     */
+    protected WebElement findElement(By locator) {
+        try {
+            return driver.findElement(locator);
+        } catch (Exception e) {
+            logger.debug("Element not found: {}", locator);
+            return null;
         }
     }
     

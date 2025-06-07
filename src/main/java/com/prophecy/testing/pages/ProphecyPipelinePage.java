@@ -454,10 +454,6 @@ public class ProphecyPipelinePage extends BasePage {
         }
     }
     
-    private void clickElement(WebElement element) {
-        waitForElementToBeClickable(element);
-        element.click();
-    }
     
     private void waitForElementToBeClickable(WebElement element) {
         wait.until(driver -> element.isDisplayed() && element.isEnabled());

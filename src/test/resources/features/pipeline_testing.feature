@@ -10,9 +10,23 @@ Feature: Prophecy Web Testing - Pipeline Execution with Custom Data
     Then I should be logged in successfully
 
   @WebTest @Login
-  Scenario: Successful login to Prophecy
+  Scenario: Successful login to Prophecy with Smart Login
     Given I navigate to Prophecy login page "https://app.prophecy.io"
     When I login with username "valid@user.com" and password "validpassword"
+    Then I should be logged in successfully
+    And I should see the dashboard
+
+  @WebTest @Login @SSO @Okta
+  Scenario: Successful login to Prophecy with Okta SSO
+    Given I navigate to Prophecy login page "https://app.prophecy.io"
+    When I login with Okta using username "valid@user.com" and password "validpassword"
+    Then I should be logged in successfully
+    And I should see the dashboard
+
+  @WebTest @Login @SSO @ADFS
+  Scenario: Successful login to Prophecy with ADFS SSO
+    Given I navigate to Prophecy login page "https://app.prophecy.io"
+    When I login with ADFS using username "valid@user.com" and password "validpassword"
     Then I should be logged in successfully
     And I should see the dashboard
 

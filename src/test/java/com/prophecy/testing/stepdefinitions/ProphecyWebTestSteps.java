@@ -46,10 +46,32 @@ public class ProphecyWebTestSteps {
     
     @When("I login with username {string} and password {string}")
     public void i_login_with_username_and_password(String username, String password) {
-        dashboardPage = loginPage.login(username, password);
+        dashboardPage = loginPage.smartLogin(username, password);
         assertThat(loginPage.isLoginSuccessful()).isTrue();
         assertThat(dashboardPage.isDashboardLoaded()).isTrue();
         log.info("Successfully logged in with username: {}", username);
+    }
+    
+    @When("I login with Okta using username {string} and password {string}")
+    public void i_login_with_okta_using_username_and_password(String username, String password) {
+        dashboardPage = loginPage.loginWithOkta(username, password);
+        assertThat(loginPage.isLoginSuccessful()).isTrue();
+        assertThat(dashboardPage.isDashboardLoaded()).isTrue();
+        log.info("Successfully logged in with Okta using username: {}", username);
+    }
+    
+    @When("I login with ADFS using username {string} and password {string}")
+    public void i_login_with_adfs_using_username_and_password(String username, String password) {
+        dashboardPage = loginPage.loginWithADFS(username, password);
+        assertThat(loginPage.isLoginSuccessful()).isTrue();
+        assertThat(dashboardPage.isDashboardLoaded()).isTrue();
+        log.info("Successfully logged in with ADFS using username: {}", username);
+    }
+    
+    @When("I click SSO login button")
+    public void i_click_sso_login_button() {
+        loginPage.clickSSOLogin();
+        log.info("Clicked SSO login button");
     }
     
     @Then("I should be logged in successfully")

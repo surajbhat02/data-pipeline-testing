@@ -135,11 +135,32 @@ mvn test -Dcucumber.filter.tags="@WebTest and @Performance"
 ## 📋 Comprehensive Test Scenarios
 
 ### 🔐 **Authentication & Navigation**
-- ✅ Successful login with valid credentials
+- ✅ **Smart Login** - Automatically detects authentication type (SSO/Traditional)
+- 🔐 **Okta SSO** - Full support for Okta Single Sign-On authentication
+- 🏢 **ADFS SSO** - Complete ADFS authentication support
+- 📧 **Traditional Login** - Email/password fallback authentication
 - ❌ Failed login with invalid credentials
 - 🧭 Navigate to pipelines section
 - 🔍 Search for specific pipelines
 - 🚪 Logout functionality
+
+#### **SSO Authentication Support**
+The framework automatically detects and handles different authentication methods:
+
+1. **Smart Login** (`smartLogin()`) - Detects authentication type automatically
+2. **Okta SSO** (`loginWithOkta()`) - Direct Okta authentication
+3. **ADFS SSO** (`loginWithADFS()`) - Direct ADFS authentication
+4. **Traditional** (`login()`) - Email/password authentication
+
+**Example Gherkin Steps:**
+```gherkin
+# Smart login (recommended)
+When I login with username "user@company.com" and password "password123"
+
+# Specific SSO methods
+When I login with Okta using username "user@company.com" and password "password123"
+When I login with ADFS using username "user@company.com" and password "password123"
+```
 
 ### 🔄 **Pipeline Execution**
 - 📊 Execute pipeline with custom JSON data
